@@ -3,7 +3,9 @@ package com.services.gateway.config;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class GatewayConfiguration {
 
     @Bean
@@ -16,14 +18,14 @@ public class GatewayConfiguration {
 
                 // Rating data Service
 
-                .route(p -> p.path("/courses**")
+                .route(p -> p.path("/courses/**")
                         .uri("lb://grades-data-service"))
 
                 // Movie catalog Service
-                .route(p -> p.path("/api/catalog/**")
+                .route(p -> p.path("/catalog/**")
                         .uri("lb://catalog-service"))
 
                 .build();
     }
 }
-}
+
